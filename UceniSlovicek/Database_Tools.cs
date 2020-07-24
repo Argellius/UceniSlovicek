@@ -1,0 +1,190 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace UceniSlovicek
+{
+    public class Database_Tools
+    {
+        private string connectionString;
+        private SqlConnection sqlConnection;
+
+
+        public Database_Tools(string conn)
+        {
+            this.connectionString = conn;
+            sqlConnection = new SqlConnection(connectionString);
+        }
+
+        public void Add_Record(Vocabulary cze_v, Vocabulary eng_v)
+        {
+            int id_cze = -1;
+            int id_eng = -1;
+            if (cze_v.Kind_Voc == KindOfVocabulary.Czech)
+            {
+                id_cze = Add_Czech_Voc(cze_v);
+
+            }
+            else
+            {
+                throw new NotImplementedException("Incorrect of implementation czech word");
+            }
+
+            if (eng_v.Kind_Voc == KindOfVocabulary.English)
+            {
+                id_eng = Add_English_Voc(eng_v);
+            }
+            else
+            {
+                throw new NotImplementedException("Incorrect of implementation english word");
+            }
+
+            if (id_cze != -1 && id_eng != -1)
+            {
+                Add_References_Vocabulary(id_cze, id_eng);
+            }
+
+
+        }
+
+        private int Add_Czech_Voc(Vocabulary voc)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = sqlConnection;
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "INSERT INTO Czech_Vocabulary(Noun, Adjective, Verb) output INSERTED.ID VALUES(@N, @A, @V)";
+            cmd.Parameters.AddWithValue("@N", voc.Noun);
+            cmd.Parameters.AddWithValue("@A", voc.Adjective);
+            cmd.Parameters.AddWithValue("@V", voc.Verb);
+            sqlConnection.Open();
+
+            int id_inserted = (int)cmd.ExecuteScalar();
+            if (sqlConnection.State == System.Data.ConnectionState.Open)
+                sqlConnection.Close();
+            return id_inserted;
+    
+        }
+
+        private int Add_English_Voc(Vocabulary voc)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = sqlConnection;
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "INSERT INTO English_Vocabulary(Noun, Adjective, Verb) output INSERTED.ID VALUES(@N, @A, @V)";
+            cmd.Parameters.AddWithValue("@N", voc.Noun);
+            cmd.Parameters.AddWithValue("@A", voc.Adjective);
+            cmd.Parameters.AddWithValue("@V", voc.Verb);
+            sqlConnection.Open();
+
+            int id_inserted = (int)cmd.ExecuteScalar();
+            if (sqlConnection.State == System.Data.ConnectionState.Open)
+                sqlConnection.Close();
+            return id_inserted;
+
+        }
+
+        private void Add_References_Vocabulary(int id_cze, int id_eng)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = sqlConnection;
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "INSERT INTO Vocabulary(id_cze, id_eng) output INSERTED.ID VALUES(@id_cze, @id_eng)";
+            cmd.Parameters.AddWithValue("@id_cze", id_cze);
+            cmd.Parameters.AddWithValue("@id_eng", id_eng);
+            sqlConnection.Open();
+            cmd.ExecuteNonQuery();
+            if (sqlConnection.State == System.Data.ConnectionState.Open)
+                sqlConnection.Close();
+        }
+
+        public DataTable Get_Id_Voc()
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = sqlConnection;
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "SELECT * FROM Vocabulary";
+            var dt = new DataTable();
+            sqlConnection.Open();
+            dt.Load(cmd.ExecuteReader());
+            if (sqlConnection.State == System.Data.ConnectionState.Open)
+                sqlConnection.Close();
+            return dt;
+        }
+
+        public DataTable Get_Czech_Voc()
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = sqlConnection;
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "SELECT * FROM Czech_Vocabulary";
+            var dt = new DataTable();
+            sqlConnection.Open();
+            dt.Load(cmd.ExecuteReader());
+            if (sqlConnection.State == System.Data.ConnectionState.Open)
+                sqlConnection.Close();
+            return dt;
+        }
+        public DataTable Get_English_Voc()
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = sqlConnection;
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "SELECT * FROM English_Vocabulary";
+            var dt = new DataTable();
+            sqlConnection.Open();
+            dt.Load(cmd.ExecuteReader());
+            if (sqlConnection.State == System.Data.ConnectionState.Open)
+                sqlConnection.Close();
+            return dt;
+        }
+        public Vocabulary Get_English_Voc_By_Id(int Id)
+        {
+            Vocabulary voc;
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = sqlConnection;
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "SELECT * FROM English_Vocabulary WHERE Id='" + Id + "'";
+            sqlConnection.Open();
+            SqlDataReader sqlDataReader = cmd.ExecuteReader();
+            if (sqlDataReader.Read())
+            {
+                voc = new Vocabulary(KindOfVocabulary.English, sqlDataReader[1].ToString(), sqlDataReader[2].ToString(), sqlDataReader[3].ToString());
+
+            }
+            else
+                voc = null;
+            sqlDataReader.Close();
+            sqlConnection.Close();
+
+            return voc;
+        }
+
+        public Vocabulary Get_Czech_Voc_By_Id(int Id)
+        {
+            Vocabulary voc;
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = sqlConnection;
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "SELECT * FROM Czech_Vocabulary WHERE Id='" + Id + "'";
+            sqlConnection.Open();
+            SqlDataReader sqlDataReader = cmd.ExecuteReader();
+            if (sqlDataReader.Read())
+            {
+                voc = new Vocabulary(KindOfVocabulary.Czech, sqlDataReader[1].ToString(), sqlDataReader[2].ToString(), sqlDataReader[3].ToString());
+
+            }
+            else
+                voc = null;
+            sqlDataReader.Close();
+            sqlConnection.Close();
+
+            return voc;
+        }
+
+
+    }
+}

@@ -1,0 +1,24 @@
+﻿<Window x:Class="UceniSlovicek.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UceniSlovicek"
+        mc:Ignorable="d"
+        Title="LearningVocabulary" Height="319" Width="800">
+    <Grid x:Name="grid_add" Margin="0,10,2,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="182*"/>
+            <ColumnDefinition Width="213*"/>
+        </Grid.ColumnDefinitions>
+        <local:UsCont_FlashCard x:Name="USerControl_FlashCard" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="278" VerticalAlignment="Top" Width="790" Margin="0,-10,0,0"/>
+
+        <local:UsCont_Add_Word x:Name="UserControl_Add" HorizontalAlignment="Left" Height="288" VerticalAlignment="Top" Width="790" Margin="0,-10,0,0" Grid.ColumnSpan="2" IsVisibleChanged="UserControl_Add_IsVisibleChanged"/>
+        <local:UsCont_Exercise x:Name="UserControl_Vypis" HorizontalAlignment="Left" Height="288" VerticalAlignment="Top" Width="790" Margin="10,-10,-10,0" Grid.ColumnSpan="2" Loaded="UsCont_Exercise_Loaded" IsVisibleChanged="UserControl_Add_IsVisibleChanged"/>
+
+        <Button x:Name="bt_Add" Content="Přidat slovíčko" HorizontalAlignment="Left" Margin="10,122,0,0" VerticalAlignment="Top" Width="359" Height="40" FontFamily="Arial" FontWeight="Bold" FontSize="20" TextOptions.TextFormattingMode="Display" TextOptions.TextHintingMode="Fixed" Background="#FF1F98FD" BorderBrush="#FF04EC4E" BorderThickness="2" Click="bt_Add_Click" Grid.ColumnSpan="2"/>
+        <Button x:Name="bt_Vypis" Content="Výpis slovíček" HorizontalAlignment="Left" Margin="10,122,0,0" VerticalAlignment="Top" Width="359" Height="40" FontFamily="Arial" FontWeight="Bold" FontSize="20" TextOptions.TextFormattingMode="Display" TextOptions.TextHintingMode="Fixed" Background="#FF1F98FD" BorderBrush="#FF04EC4E" BorderThickness="2" Grid.Column="1" Click="bt_Vypis_Click"/>
+        <Button x:Name="bt_FlashCards" Content="FlashCards" HorizontalAlignment="Left" Margin="10,181,0,0" VerticalAlignment="Top" Width="359" Height="40" FontFamily="Arial" FontWeight="Bold" FontSize="20" TextOptions.TextFormattingMode="Display" TextOptions.TextHintingMode="Fixed" Background="#FF1F98FD" BorderBrush="#FF04EC4E" BorderThickness="2" Click="bt_FlashCards_Click" Grid.ColumnSpan="2"/>
+
+    </Grid>
+</Window>

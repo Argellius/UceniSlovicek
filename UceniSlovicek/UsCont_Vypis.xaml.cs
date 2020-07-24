@@ -21,7 +21,7 @@ namespace UceniSlovicek
     {
         public string podst_jm { set; get; }
         public string prid_jm { set; get; }
-        public string sloveso { set; get; }
+        public string Sloveso { set; get; }
 
         
         public string empty_cell
@@ -39,10 +39,10 @@ namespace UceniSlovicek
     /// Interaction logic for UsCont_Exercise.xaml
     /// </summary>
     /// 
-    public partial class UsCont_Exercise : UserControl
+    public partial class UsCont_Vypis : UserControl
     {
         private Database_Tools dtb_t;
-        public UsCont_Exercise()
+        public UsCont_Vypis()
         {
             InitializeComponent();
             dtb_t = new Database_Tools(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Adam\source\repos\UceniSlovicek\UceniSlovicek\dtb_slovicka.mdf;Integrated Security=True");
@@ -115,11 +115,14 @@ namespace UceniSlovicek
             {
                 Vocabulary czeVoc = dtb_t.Get_Czech_Voc_By_Id(Convert.ToInt32(row.ItemArray[1]));
                 Vocabulary engVoc = dtb_t.Get_English_Voc_By_Id(Convert.ToInt32(row.ItemArray[2]));
-                this.dg_print_words.Items.Add(new RowWord { podst_jm = czeVoc.Noun, prid_jm = czeVoc.Adjective, sloveso = czeVoc.Verb, Noun = engVoc.Noun, Adjective = engVoc.Adjective, Verb = engVoc.Verb }); ; ;
+                this.dg_print_words.Items.Add(new RowWord { podst_jm = czeVoc.Noun, prid_jm = czeVoc.Adjective, Sloveso = czeVoc.Verb, Noun = engVoc.Noun, Adjective = engVoc.Adjective, Verb = engVoc.Verb }); ; ;
             }
         }
 
-
+        private void bt_zpátky_Click(object sender, RoutedEventArgs e)
+        {
+            this.Visibility = Visibility.Hidden;
+        }
     }
 
 

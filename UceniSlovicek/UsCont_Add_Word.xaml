@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UceniSlovicek"
-             mc:Ignorable="d" d:DesignWidth="800" Height="291.394">
+             mc:Ignorable="d" d:DesignWidth="800" Height="291.394" Width="787.731">
     <Grid Margin="0,0,10,10">
         <Button x:Name="bt_pridat_slov" Content="Přidat" HorizontalAlignment="Left" Margin="696,250,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" Height="21"/>
         <TextBox x:Name="tb_eng_noun" HorizontalAlignment="Left" Height="23" Margin="182,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197"/>
@@ -22,6 +22,7 @@
         <TextBox x:Name="tb_cze_adjective" HorizontalAlignment="Left" Height="23" Margin="182,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197"/>
         <TextBox x:Name="tb_cze_verb" HorizontalAlignment="Left" Height="23" Margin="182,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197"/>
         <Button x:Name="bt_zpet" Content="Zpátky" HorizontalAlignment="Left" Margin="696,13,0,0" VerticalAlignment="Top" Width="75" Click="bt_zpet_Click"/>
+        <TextBlock x:Name="lb_sec_added" HorizontalAlignment="Left" Margin="697,199,0,0" TextWrapping="Wrap" Text="Úspěšně přidáno!" VerticalAlignment="Top" Width="83" FontSize="14" FontWeight="Bold" Visibility="Hidden"/>
 
     </Grid>
 </UserControl>

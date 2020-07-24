@@ -75,11 +75,11 @@
     <Compile Include="UsCont_Add_Word.xaml.cs">
       <DependentUpon>UsCont_Add_Word.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UsCont_Exercise.xaml.cs">
-      <DependentUpon>UsCont_Exercise.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UsCont_FlashCards.xaml.cs">
       <DependentUpon>UsCont_FlashCards.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsCont_Vypis.xaml.cs">
+      <DependentUpon>UsCont_Vypis.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vocabulary.cs" />
     <Page Include="MainWindow.xaml">
@@ -99,13 +99,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UsCont_Exercise.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="UsCont_FlashCards.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsCont_Vypis.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +154,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>dtb_slovicka.mdf</DependentUpon>
     </Content>
+    <Resource Include="gb.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

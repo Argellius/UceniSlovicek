@@ -5,20 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UceniSlovicek"
         mc:Ignorable="d"
-        Title="LearningVocabulary" Height="319" Width="800">
-    <Grid x:Name="grid_add" Margin="0,10,2,0">
+        Title="LearningVocabulary" Height="324" Width="810.437" Icon="gb.png">
+    <Grid x:Name="grid_add" Margin="0,0,2,0">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="182*"/>
-            <ColumnDefinition Width="213*"/>
+            <ColumnDefinition Width="287*"/>
+            <ColumnDefinition Width="513*"/>
         </Grid.ColumnDefinitions>
-        <local:UsCont_FlashCard x:Name="USerControl_FlashCard" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="278" VerticalAlignment="Top" Width="790" Margin="0,-10,0,0"/>
+        <local:UsCont_FlashCard x:Name="UserControl_FlashCard" HorizontalAlignment="Left" Height="288" VerticalAlignment="Top" Width="800" Margin="3,0,-3,0" IsVisibleChanged="UserControl_FlashCards_IsVisibleChanged" Grid.ColumnSpan="2"/>
+        <local:UsCont_Add_Word x:Name="UserControl_Add" HorizontalAlignment="Left" Height="288" VerticalAlignment="Top" Width="803" IsVisibleChanged="UserControl_Add_IsVisibleChanged" Grid.ColumnSpan="2" Margin="0,0,-3,0"/>
+        <local:UsCont_Vypis x:Name="UserControl_Vypis" Height="Auto" Width="Auto" Loaded="UsCont_Exercise_Loaded" IsVisibleChanged="UserControl_Vypis_IsVisibleChanged" Margin="0,-5,-1,10" Grid.ColumnSpan="2" />
 
-        <local:UsCont_Add_Word x:Name="UserControl_Add" HorizontalAlignment="Left" Height="288" VerticalAlignment="Top" Width="790" Margin="0,-10,0,0" Grid.ColumnSpan="2" IsVisibleChanged="UserControl_Add_IsVisibleChanged"/>
-        <local:UsCont_Exercise x:Name="UserControl_Vypis" HorizontalAlignment="Left" Height="288" VerticalAlignment="Top" Width="790" Margin="10,-10,-10,0" Grid.ColumnSpan="2" Loaded="UsCont_Exercise_Loaded" IsVisibleChanged="UserControl_Add_IsVisibleChanged"/>
-
-        <Button x:Name="bt_Add" Content="Přidat slovíčko" HorizontalAlignment="Left" Margin="10,122,0,0" VerticalAlignment="Top" Width="359" Height="40" FontFamily="Arial" FontWeight="Bold" FontSize="20" TextOptions.TextFormattingMode="Display" TextOptions.TextHintingMode="Fixed" Background="#FF1F98FD" BorderBrush="#FF04EC4E" BorderThickness="2" Click="bt_Add_Click" Grid.ColumnSpan="2"/>
-        <Button x:Name="bt_Vypis" Content="Výpis slovíček" HorizontalAlignment="Left" Margin="10,122,0,0" VerticalAlignment="Top" Width="359" Height="40" FontFamily="Arial" FontWeight="Bold" FontSize="20" TextOptions.TextFormattingMode="Display" TextOptions.TextHintingMode="Fixed" Background="#FF1F98FD" BorderBrush="#FF04EC4E" BorderThickness="2" Grid.Column="1" Click="bt_Vypis_Click"/>
-        <Button x:Name="bt_FlashCards" Content="FlashCards" HorizontalAlignment="Left" Margin="10,181,0,0" VerticalAlignment="Top" Width="359" Height="40" FontFamily="Arial" FontWeight="Bold" FontSize="20" TextOptions.TextFormattingMode="Display" TextOptions.TextHintingMode="Fixed" Background="#FF1F98FD" BorderBrush="#FF04EC4E" BorderThickness="2" Click="bt_FlashCards_Click" Grid.ColumnSpan="2"/>
+        <Button x:Name="bt_Add" Content="Přidat slovíčko" HorizontalAlignment="Left" Margin="128,10,0,0" VerticalAlignment="Top" Width="590" Height="40" FontFamily="Arial" FontWeight="Bold" FontSize="20" TextOptions.TextFormattingMode="Display" TextOptions.TextHintingMode="Fixed" Background="#FF1F98FD" BorderBrush="#FF04EC4E" BorderThickness="2" Click="bt_Add_Click" Grid.ColumnSpan="2"/>
+        <Button x:Name="bt_Vypis" Content="Výpis slovíček" HorizontalAlignment="Left" Margin="128,67,0,0" VerticalAlignment="Top" Width="590" Height="40" FontFamily="Arial" FontWeight="Bold" FontSize="20" TextOptions.TextFormattingMode="Display" TextOptions.TextHintingMode="Fixed" Background="#FF1F98FD" BorderBrush="#FF04EC4E" BorderThickness="2" Click="bt_Vypis_Click" Grid.ColumnSpan="2"/>
+        <Button x:Name="bt_FlashCards" Content="FlashCards" HorizontalAlignment="Left" Margin="128,125,0,0" VerticalAlignment="Top" Width="590" Height="40" FontFamily="Arial" FontWeight="Bold" FontSize="20" TextOptions.TextFormattingMode="Display" TextOptions.TextHintingMode="Fixed" Background="#FF1F98FD" BorderBrush="#FF04EC4E" BorderThickness="2" Click="bt_FlashCards_Click" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>

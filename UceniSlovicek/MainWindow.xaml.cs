@@ -24,23 +24,34 @@ namespace UceniSlovicek
         private List<UserControl> All_UserControl;
         private List<Button> All_Buttons;
 
+
+
         public MainWindow()
         {
             InitializeComponent();
-            UserControl_Add.Visibility = Visibility.Hidden;
-            UserControl_Vypis.Visibility = Visibility.Hidden;
-            bt_Add.Visibility = Visibility.Visible;
-            bt_Vypis.Visibility = Visibility.Visible;
+            InitializeButtonUserControl();
 
-            All_UserControl = new List<UserControl>() { this.UserControl_Add, this.UserControl_Vypis, this.USerControl_FlashCard };
-            All_Buttons = new List<Button>() { this.bt_Add, this.bt_Vypis, this.bt_FlashCards };
-          }
+
+            ShowAllButtons(true);
+            ShowAllUserControl(false);
+
+
+        }
+        private void InitializeButtonUserControl()
+        {
+            All_UserControl = new List<UserControl>() {
+                this.UserControl_Add, this.UserControl_Vypis, this.UserControl_FlashCard
+            };
+
+            All_Buttons = new List<Button>() {
+                this.bt_Add, this.bt_Vypis, this.bt_FlashCards
+            };
+        }
 
         private void bt_Add_Click(object sender, RoutedEventArgs e)
         {
-            UserControl_Add.Visibility = Visibility.Visible;
-            bt_Add.Visibility = Visibility.Hidden;
-            bt_Vypis.Visibility = Visibility.Hidden;
+            ShowUserControl(this.UserControl_Add, true);
+            ShowAllButtons(false);
         }
 
         private void UserControl_Add_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -48,27 +59,16 @@ namespace UceniSlovicek
 
             if (UserControl_Add.Visibility == Visibility.Hidden)
             {
-                if (bt_Add.Visibility != Visibility.Visible)
-                    bt_Add.Visibility = Visibility.Visible;
-                if (bt_Vypis.Visibility != Visibility.Visible)
-                    bt_Vypis.Visibility = Visibility.Visible;
+                ShowAllButtons(true);
+                ShowAllUserControl(false);
             }
-            else
-            {
-                if (bt_Add.Visibility != Visibility.Hidden)
-                    bt_Add.Visibility = Visibility.Hidden;
-                if (bt_Vypis.Visibility != Visibility.Hidden)
-                    bt_Vypis.Visibility = Visibility.Hidden;
-            }
+
         }
 
         private void bt_Vypis_Click(object sender, RoutedEventArgs e)
         {
-            UserControl_Add.Visibility = Visibility.Hidden;
-            UserControl_Vypis.Visibility = Visibility.Visible;
-
-            bt_Add.Visibility = Visibility.Hidden;
-            bt_Vypis.Visibility = Visibility.Hidden;
+            this.ShowUserControl(this.UserControl_Vypis, true);
+            this.ShowAllButtons(false);
 
 
         }
@@ -81,22 +81,81 @@ namespace UceniSlovicek
                 bt_Add.Visibility = Visibility.Hidden;
         }
 
-        private void ShowHideAllButtons(bool action)
+        /*
+         * Funkce pro skrytí tlačítek v main window
+         * Hide = False
+         * Visible = True
+         * */
+        private void ShowAllButtons(bool action)
         {
             Visibility vs_action = action ? Visibility.Visible : Visibility.Hidden;
 
             foreach (Button bt in All_Buttons)
             {
                 if (bt.Visibility != vs_action)
-                bt.Visibility = vs_action;
+                    bt.Visibility = vs_action;
             }
 
         }
+
+        /*
+        * Funkce pro skrytí UserControl v main window
+        * Hide = False
+        * Visible = True
+         * */
+        private void ShowAllUserControl(bool action)
+        {
+            Visibility vs_action = action ? Visibility.Visible : Visibility.Hidden;
+
+            foreach (UserControl UC in All_UserControl)
+            {
+                if (UC.Visibility != vs_action)
+                    UC.Visibility = vs_action;
+            }
+
+        }
+
+        private void ShowUserControl(UserControl uc, bool action)
+        {
+            Visibility vs_action = action ? Visibility.Visible : Visibility.Hidden;
+            Visibility vs_action_negation = action ? Visibility.Hidden : Visibility.Visible;
+
+            foreach (UserControl UC in All_UserControl)
+            {
+                if (UC.Visibility != vs_action && UC == uc)
+                    UC.Visibility = vs_action;
+                else
+                    if (UC.Visibility != vs_action_negation)
+                    UC.Visibility = vs_action_negation;
+
+            }
+
+        }
+
+
         private void bt_FlashCards_Click(object sender, RoutedEventArgs e)
         {
-            ShowHideAllButtons(false);
-            USerControl_FlashCard.Visibility = Visibility.Visible;
+            ShowAllButtons(false);
+            UserControl_FlashCard.Visibility = Visibility.Visible;
+            UserControl_FlashCard.ReloadWords();
+        }
 
+        private void UserControl_Vypis_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (UserControl_Vypis.Visibility == Visibility.Hidden)
+            {
+                ShowAllButtons(true);
+                ShowAllUserControl(false);
+            }
+        }
+
+        private void UserControl_FlashCards_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (UserControl_FlashCard.Visibility == Visibility.Hidden)
+            {
+                ShowAllButtons(true);
+                ShowAllUserControl(false);
+            }
         }
     }
 }

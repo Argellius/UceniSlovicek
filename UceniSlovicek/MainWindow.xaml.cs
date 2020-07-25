@@ -40,11 +40,11 @@ namespace UceniSlovicek
         private void InitializeButtonUserControl()
         {
             All_UserControl = new List<UserControl>() {
-                this.UserControl_Add, this.UserControl_Vypis, this.UserControl_FlashCard
-            };
+                this.UserControl_Add, this.UserControl_Vypis, this.UserControl_FlashCard, UserControl_Write
+        };
 
             All_Buttons = new List<Button>() {
-                this.bt_Add, this.bt_Vypis, this.bt_FlashCards
+                this.bt_Add, this.bt_Vypis, this.bt_FlashCards, this.bt_Write
             };
         }
 
@@ -156,6 +156,13 @@ namespace UceniSlovicek
                 ShowAllButtons(true);
                 ShowAllUserControl(false);
             }
+        }
+
+        private void bt_Write_Click(object sender, RoutedEventArgs e)
+        {
+            ShowAllButtons(false);
+            UserControl_Write.Visibility = Visibility.Visible;
+            UserControl_Write.ReloadWords();
         }
     }
 }

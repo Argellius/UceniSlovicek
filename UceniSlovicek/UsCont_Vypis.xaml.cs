@@ -21,18 +21,39 @@ namespace UceniSlovicek
     {
         public string podst_jm { set; get; }
         public string prid_jm { set; get; }
-        public string Sloveso { set; get; }
+        public string Sloveso { set; get; }      
 
-        
-        public string empty_cell
-        {
-            get { return string.Empty; }
-        }
 
 
         public string Noun { set; get; }
         public string Adjective { set; get; }
         public string Verb { set; get; }
+
+        public string empty_cell
+        {
+            get { return string.Empty; }
+        }
+        public string GetPropertyById(int i)
+        {
+            switch (i)
+            {
+                case 0:
+                    return this.podst_jm;
+                    
+                case 1:
+                    return this.prid_jm;
+                case 2:
+                    return this.Sloveso;
+                case 3:
+                    return this.Noun;
+                case 4:
+                    return this.Adjective;
+                case 5:
+                    return this.Verb;
+                default:
+                    return string.Empty;
+            }
+        }
 
     }
     /// <summary>
@@ -73,7 +94,7 @@ namespace UceniSlovicek
             DataGridTextColumn c3 = new DataGridTextColumn();
             c3.Header = "CZ_Verb";
             c3.Width = 110;
-            c3.Binding = new Binding("sloveso");
+            c3.Binding = new Binding("Sloveso");
             dg_print_words.Columns.Add(c3);
 
             DataGridTextColumn c7 = new DataGridTextColumn();
@@ -103,6 +124,8 @@ namespace UceniSlovicek
 
         }
 
+
+
         private void InicializeDataGrid()
         {
             AddColumns();
@@ -122,6 +145,11 @@ namespace UceniSlovicek
         private void bt_zpátky_Click(object sender, RoutedEventArgs e)
         {
             this.Visibility = Visibility.Hidden;
+        }
+
+        private void dg_print_words_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 

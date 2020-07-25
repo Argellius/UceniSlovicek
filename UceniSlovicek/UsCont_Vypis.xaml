@@ -8,7 +8,7 @@
 
 
     <Grid Margin="0,0,10,-4" Height="288" VerticalAlignment="Top">
-        <DataGrid x:Name="dg_print_words" Margin="5,10,0,0" IsReadOnly="True" Height="250" VerticalAlignment="Top" >
+        <DataGrid x:Name="dg_print_words" Margin="5,10,0,0" IsReadOnly="True" Height="250" VerticalAlignment="Top" SelectionChanged="dg_print_words_SelectionChanged" >
             <DataGrid.Resources>
                 <!-- Gap Cell Style -->
                 <Style x:Key="DataGridGapCell" TargetType="DataGridCell">

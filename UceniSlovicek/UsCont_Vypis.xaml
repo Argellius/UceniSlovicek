@@ -4,27 +4,29 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UceniSlovicek"
-             mc:Ignorable="d" Height="286.879" Width="790.731">
+             mc:Ignorable="d" Height="286.879" Width="790.731" Background="White">
 
 
     <Grid Margin="0,0,10,-4" Height="288" VerticalAlignment="Top">
+
         <DataGrid x:Name="dg_print_words" Margin="5,10,0,0" IsReadOnly="True" Height="250" VerticalAlignment="Top" SelectionChanged="dg_print_words_SelectionChanged" >
             <DataGrid.Resources>
                 <!-- Gap Cell Style -->
-                <Style x:Key="DataGridGapCell" TargetType="DataGridCell">
-                    <Setter Property="Background" Value="{Binding ElementName=dataGrid, Path=Background}"/>
+                <Style x:Key="DataGridGapCell" TargetType="{x:Type DataGridCell}">
+                    <Setter Property="Background" Value="{Binding Background, ElementName=dataGrid}"/>
                     <Setter Property="BorderThickness" Value="0,0,0,0"/>
-                    <Setter Property="BorderBrush" Value="{Binding ElementName=dataGrid, Path=HorizontalGridLinesBrush}"/>
+                    <Setter Property="BorderBrush" Value="{Binding HorizontalGridLinesBrush, ElementName=dataGrid}"/>
                 </Style>
                 <!-- Gap ColumnHeader Style -->
-                <Style x:Key="DataGridGapHeader" TargetType="DataGridColumnHeader">
-                    <Setter Property="Background" Value="{Binding ElementName=dataGrid, Path=Background}"/>
+                <Style x:Key="DataGridGapHeader" TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="{Binding Background, ElementName=dataGrid}"/>
                 </Style>
 
             </DataGrid.Resources>
 
         </DataGrid>
         <Button x:Name="bt_zpatky" Content="Zpátky" HorizontalAlignment="Left" Margin="703,264,0,0" VerticalAlignment="Top" Width="75" Click="bt_zpátky_Click"/>
+        <local:UsCont_Edit_Word x:Name="UserControl_Edit" HorizontalAlignment="Left" Margin="1,10,-8,0" VerticalAlignment="Top" Height="278" Width="788" Loaded="UserControl_Edit_Loaded"/>
 
     </Grid>
 </UserControl>

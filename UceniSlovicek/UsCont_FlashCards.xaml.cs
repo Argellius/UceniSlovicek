@@ -90,10 +90,10 @@ namespace UceniSlovicek
                 SetLabelByLanguage(true);
 
                 //Podstatné jméno
-                if (actualWord.podst_jm.Trim() == string.Empty)
+                if (actualWord.podst_jm == string.Empty)
                 {
                     lb_Noun.Visibility = Visibility.Hidden;
-                    bt_content.AppendLine();
+                    bt_content.AppendLine("\n");
                 }
                 else
                 {
@@ -102,10 +102,10 @@ namespace UceniSlovicek
                 }
 
                 //Přídavné jméno
-                if (actualWord.prid_jm.Trim() == string.Empty)
+                if (actualWord.prid_jm == string.Empty)
                 {
                     lb_Adjective.Visibility = Visibility.Hidden;
-                    bt_content.AppendLine();
+                    bt_content.AppendLine("\n");
                 }
                 else
                 {
@@ -114,7 +114,7 @@ namespace UceniSlovicek
                 }
 
                 //Sloveso
-                if (actualWord.Sloveso.Trim() == string.Empty)
+                if (actualWord.Sloveso == string.Empty)
                 {
                     lb_Verb.Visibility = Visibility.Hidden;
                     bt_content.AppendLine();
@@ -130,7 +130,7 @@ namespace UceniSlovicek
             {
                 SetLabelByLanguage(false);
                 //Podstatné jméno
-                if (actualWord.Noun.Trim() == string.Empty)
+                if (actualWord.Noun == string.Empty)
                 {
                     lb_Noun.Visibility = Visibility.Hidden;
                     bt_content.AppendLine();
@@ -142,7 +142,7 @@ namespace UceniSlovicek
                 }
 
                 //Přídavné jméno
-                if (actualWord.Adjective.Trim() == string.Empty)
+                if (actualWord.Adjective == string.Empty)
                 {
                     lb_Adjective.Visibility = Visibility.Hidden;
                     bt_content.AppendLine();
@@ -154,7 +154,7 @@ namespace UceniSlovicek
                 }
 
                 //Sloveso
-                if (actualWord.Verb.Trim() == string.Empty)
+                if (actualWord.Verb == string.Empty)
                 {
                     lb_Verb.Visibility = Visibility.Hidden;
                     bt_content.AppendLine();

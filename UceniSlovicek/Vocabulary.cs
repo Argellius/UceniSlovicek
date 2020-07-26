@@ -22,6 +22,20 @@ namespace UceniSlovicek
             this.Verb = Verb;
         }
 
+        public void SetNoun(string item)
+        {
+            this.Noun = item;
+        }
+
+        public void SetAdjective(string item)
+        {
+            this.Adjective = item;
+        }
+
+        public void SetVerb(string item)
+        {
+            this.Verb = item;
+        }
 
     }
 }

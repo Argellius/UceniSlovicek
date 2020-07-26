@@ -11,13 +11,13 @@
             <ColumnDefinition Width="287*"/>
             <ColumnDefinition Width="513*"/>
         </Grid.ColumnDefinitions>
-        
+
 
         <local:UsCont_FlashCard x:Name="UserControl_FlashCard" HorizontalAlignment="Left" Height="288" VerticalAlignment="Top" Width="800" Margin="3,0,-3,0" IsVisibleChanged="UserControl_FlashCards_IsVisibleChanged" Grid.ColumnSpan="2"/>
         <local:UsCont_Add_Word x:Name="UserControl_Add" HorizontalAlignment="Left" Height="288" VerticalAlignment="Top" Width="803" IsVisibleChanged="UserControl_Add_IsVisibleChanged" Grid.ColumnSpan="2" Margin="0,0,-3,0"/>
         <local:UsCont_Vypis x:Name="UserControl_Vypis" Height="Auto" Width="Auto" Loaded="UsCont_Exercise_Loaded" IsVisibleChanged="UserControl_Vypis_IsVisibleChanged" Margin="0,-5,-1,10" Grid.ColumnSpan="2" />
-        <local:UsCont_Write x:Name="UserControl_Write" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="3,0,0,0" VerticalAlignment="Top" Height="291" Width="788"/>
-        
+        <local:UsCont_Write x:Name="UserControl_Write" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="3,0,0,0" VerticalAlignment="Top" IsVisibleChanged="UserControl_Write_IsVisibleChanged" Height="291" Width="788"/>
+
         <Button x:Name="bt_Add" Content="Přidat slovíčko" HorizontalAlignment="Left" Margin="128,10,0,0" VerticalAlignment="Top" Width="590" Height="40" FontFamily="Arial" FontWeight="Bold" FontSize="20" TextOptions.TextFormattingMode="Display" TextOptions.TextHintingMode="Fixed" Background="#FF1F98FD" BorderBrush="#FF04EC4E" BorderThickness="2" Click="bt_Add_Click" Grid.ColumnSpan="2"/>
         <Button x:Name="bt_Vypis" Content="Výpis slovíček" HorizontalAlignment="Left" Margin="128,67,0,0" VerticalAlignment="Top" Width="590" Height="40" FontFamily="Arial" FontWeight="Bold" FontSize="20" TextOptions.TextFormattingMode="Display" TextOptions.TextHintingMode="Fixed" Background="#FF1F98FD" BorderBrush="#FF04EC4E" BorderThickness="2" Click="bt_Vypis_Click" Grid.ColumnSpan="2"/>
         <Button x:Name="bt_FlashCards" Content="FlashCards" HorizontalAlignment="Left" Margin="128,125,0,0" VerticalAlignment="Top" Width="590" Height="40" FontFamily="Arial" FontWeight="Bold" FontSize="20" TextOptions.TextFormattingMode="Display" TextOptions.TextHintingMode="Fixed" Background="#FF1F98FD" BorderBrush="#FF04EC4E" BorderThickness="2" Click="bt_FlashCards_Click" Grid.ColumnSpan="2"/>

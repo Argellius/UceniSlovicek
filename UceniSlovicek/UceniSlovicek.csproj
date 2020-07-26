@@ -72,6 +72,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="UsCont_Edit_Word.xaml.cs">
+      <DependentUpon>UsCont_Edit_Word.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UsCont_Add_Word.xaml.cs">
       <DependentUpon>UsCont_Add_Word.xaml</DependentUpon>
     </Compile>
@@ -98,6 +101,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UsCont_Edit_Word.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="UsCont_Add_Word.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

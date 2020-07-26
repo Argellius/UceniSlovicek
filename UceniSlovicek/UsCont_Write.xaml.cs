@@ -49,12 +49,12 @@ namespace UceniSlovicek
             {
                 Vocabulary czeVoc = dt.Get_Czech_Voc_By_Id(Convert.ToInt32(row.ItemArray[1]));
                 Vocabulary engVoc = dt.Get_English_Voc_By_Id(Convert.ToInt32(row.ItemArray[2]));
-                this.List_AllWords.Add(new RowWord { podst_jm = czeVoc.Noun.Trim(), 
-                    prid_jm = czeVoc.Adjective.Trim(), 
-                    Sloveso = czeVoc.Verb.Trim(), 
-                    Noun = engVoc.Noun.Trim(), 
-                    Adjective = engVoc.Adjective.Trim(), 
-                    Verb = engVoc.Verb.Trim()
+                this.List_AllWords.Add(new RowWord { podst_jm = czeVoc.Noun, 
+                    prid_jm = czeVoc.Adjective, 
+                    Sloveso = czeVoc.Verb, 
+                    Noun = engVoc.Noun, 
+                    Adjective = engVoc.Adjective, 
+                    Verb = engVoc.Verb
                 }); ; ;
             }
 
@@ -66,7 +66,7 @@ namespace UceniSlovicek
             if (kv == KindOfVocabulary.Czech)
             {
                 //Podstatné jméno
-                if (actualWord.podst_jm.Trim() == string.Empty)
+                if (actualWord.podst_jm == string.Empty)
                 {
                     lb_Noun.Visibility = Visibility.Hidden;
                     tbox_Noun.Visibility = Visibility.Hidden;
@@ -79,7 +79,7 @@ namespace UceniSlovicek
                 }
 
                 //Přídavné jméno
-                if (actualWord.prid_jm.Trim() == string.Empty)
+                if (actualWord.prid_jm == string.Empty)
                 {
                     lb_Adjective.Visibility = Visibility.Hidden;
                     tbox_Adjective.Visibility = Visibility.Hidden;
@@ -92,7 +92,7 @@ namespace UceniSlovicek
                 }
 
                 //Sloveso
-                if (actualWord.Sloveso.Trim() == string.Empty)
+                if (actualWord.Sloveso == string.Empty)
                 {
                     lb_Verb.Visibility = Visibility.Hidden;
                     tbox_Verb.Visibility = Visibility.Hidden;
@@ -123,7 +123,7 @@ namespace UceniSlovicek
                 if (tb.Visibility == Visibility.Visible)
                 {
                     visible++;
-                    if (tb.Text.ToLower() == actualWord.GetPropertyById(i+3).ToLower())
+                    if (tb.Text.Trim().ToLower() == actualWord.GetPropertyById(i+3).ToLower())
                     {
                         correct++;
                     }
@@ -131,6 +131,11 @@ namespace UceniSlovicek
 
             MessageBox.Show("Správně: " + correct + "/" + visible);
 
+        }
+
+        private void bt_zpatky_Click(object sender, RoutedEventArgs e)
+        {
+            this.Visibility = Visibility.Hidden;
         }
     }
 }

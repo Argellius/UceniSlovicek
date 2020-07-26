@@ -164,5 +164,14 @@ namespace UceniSlovicek
             UserControl_Write.Visibility = Visibility.Visible;
             UserControl_Write.ReloadWords();
         }
+
+        private void UserControl_Write_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (UserControl_Write.Visibility == Visibility.Hidden)
+            {
+                ShowAllButtons(true);
+                ShowAllUserControl(false);
+            }
+        }
     }
 }

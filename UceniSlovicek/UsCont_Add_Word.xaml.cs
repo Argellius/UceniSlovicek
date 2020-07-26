@@ -32,8 +32,8 @@ namespace UceniSlovicek
         {
             if ((tb_cze_noun.Text != string.Empty || tb_cze_adjective.Text != string.Empty || tb_cze_verb.Text != string.Empty) && (tb_eng_noun.Text != string.Empty || tb_eng_adjective.Text != string.Empty || tb_eng_verb.Text != string.Empty))
             {
-                Vocabulary cze_voc = new Vocabulary(KindOfVocabulary.Czech, tb_cze_noun.Text, tb_cze_adjective.Text, tb_cze_verb.Text);
-                Vocabulary eng_voc = new Vocabulary(KindOfVocabulary.English, tb_eng_noun.Text, tb_eng_adjective.Text, tb_eng_verb.Text);
+                Vocabulary cze_voc = new Vocabulary(KindOfVocabulary.Czech, tb_cze_noun.Text.Trim(), tb_cze_adjective.Text.Trim(), tb_cze_verb.Text.Trim());
+                Vocabulary eng_voc = new Vocabulary(KindOfVocabulary.English, tb_eng_noun.Text.Trim(), tb_eng_adjective.Text.Trim(), tb_eng_verb.Text.Trim());
                 Dtb_Tools.Add_Record(cze_voc, eng_voc);
                 lb_sec_added.Visibility = Visibility.Visible;
                 TextBox_Clean();

@@ -19,6 +19,7 @@ namespace UceniSlovicek
 {
     public class RowWord
     {
+        public int Id { set; get; }
         public string podst_jm { set; get; }
         public string prid_jm { set; get; }
         public string Sloveso { set; get; }      
@@ -66,8 +67,29 @@ namespace UceniSlovicek
         public UsCont_Vypis()
         {
             InitializeComponent();
+
+
             dtb_t = new Database_Tools(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Adam\source\repos\UceniSlovicek\UceniSlovicek\dtb_slovicka.mdf;Integrated Security=True");
+            UserControl_Edit.Visibility = Visibility.Hidden;
             InicializeDataGrid();
+
+            InicializeDoubleClickEvent();
+
+        }
+
+        private void InicializeDoubleClickEvent()
+        {
+            Style rowStyle = new Style(typeof(DataGridRow));
+            rowStyle.Setters.Add(new EventSetter(DataGridRow.MouseDoubleClickEvent,
+                                     new MouseButtonEventHandler(Row_DoubleClick)));
+            dg_print_words.RowStyle = rowStyle;
+        }
+        private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            DataGridRow row = sender as DataGridRow;
+            UserControl_Edit.Visibility = Visibility.Visible;
+            UserControl_Edit.InicializeWord((row.Item as RowWord).Id);
+            UserControl_Edit.Visibility = Visibility.Visible;
         }
 
         private void UserControl_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -78,6 +100,14 @@ namespace UceniSlovicek
 
         private void AddColumns()
         {
+            DataGridTextColumn c0 = new DataGridTextColumn();
+            c0.Header = "ID";
+            c0.Binding = new Binding("Id");
+            c0.Width = 110;
+            c0.Visibility = Visibility.Hidden;
+            dg_print_words.Columns.Add(c0);
+
+
             DataGridTextColumn c1 = new DataGridTextColumn();
             c1.Header = "CZ_Noun";
             c1.Binding = new Binding("podst_jm");
@@ -138,7 +168,7 @@ namespace UceniSlovicek
             {
                 Vocabulary czeVoc = dtb_t.Get_Czech_Voc_By_Id(Convert.ToInt32(row.ItemArray[1]));
                 Vocabulary engVoc = dtb_t.Get_English_Voc_By_Id(Convert.ToInt32(row.ItemArray[2]));
-                this.dg_print_words.Items.Add(new RowWord { podst_jm = czeVoc.Noun, prid_jm = czeVoc.Adjective, Sloveso = czeVoc.Verb, Noun = engVoc.Noun, Adjective = engVoc.Adjective, Verb = engVoc.Verb }); ; ;
+                this.dg_print_words.Items.Add(new RowWord {Id = (int)row.ItemArray[0], podst_jm = czeVoc.Noun, prid_jm = czeVoc.Adjective, Sloveso = czeVoc.Verb, Noun = engVoc.Noun, Adjective = engVoc.Adjective, Verb = engVoc.Verb }); ; ;
             }
         }
 
@@ -148,6 +178,11 @@ namespace UceniSlovicek
         }
 
         private void dg_print_words_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void UserControl_Edit_Loaded(object sender, RoutedEventArgs e)
         {
 
         }

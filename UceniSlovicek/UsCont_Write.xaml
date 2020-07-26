@@ -21,5 +21,6 @@
         <TextBox x:Name="tbox_Verb" HorizontalAlignment="Left" Height="25" Margin="188,221,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="232" FontSize="18"/>
         <Button x:Name="bt_nextWord" Content="Další slovíčko" HorizontalAlignment="Left" Margin="663,261,0,0" VerticalAlignment="Top" Width="115" Click="bt_nextWord_Click"/>
         <Button x:Name="bt_check" Content="Zkontrolovat" HorizontalAlignment="Left" Margin="663,237,0,0" VerticalAlignment="Top" Width="115" Click="bt_check_Click"/>
+        <Button x:Name="bt_zpatky" Content="Zpátky" HorizontalAlignment="Left" Margin="663,10,0,0" VerticalAlignment="Top" Width="115" Click="bt_zpatky_Click"/>
     </Grid>
 </UserControl>

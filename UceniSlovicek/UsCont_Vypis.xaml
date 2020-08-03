@@ -26,7 +26,7 @@
 
         </DataGrid>
         <Button x:Name="bt_zpatky" Content="Zpátky" HorizontalAlignment="Left" Margin="703,264,0,0" VerticalAlignment="Top" Width="75" Click="bt_zpátky_Click"/>
-        <local:UsCont_Edit_Word x:Name="UserControl_Edit" HorizontalAlignment="Left" Margin="1,10,-8,0" VerticalAlignment="Top" Height="278" Width="788" Loaded="UserControl_Edit_Loaded"/>
+        <local:UsCont_Edit_Word x:Name="UserControl_Edit" HorizontalAlignment="Left" Margin="1,10,-8,0" VerticalAlignment="Top" Height="278" Width="788" Loaded="UserControl_Edit_Loaded" IsVisibleChanged="UserControl_Edit_IsVisibleChanged"/>
 
     </Grid>
 </UserControl>

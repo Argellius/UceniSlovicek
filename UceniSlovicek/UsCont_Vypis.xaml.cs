@@ -158,9 +158,14 @@ namespace UceniSlovicek
 
         private void InicializeDataGrid()
         {
+            if (dg_print_words.Columns.Count != 0)
+            dg_print_words.Columns.Clear();
+            if (dg_print_words.Items.Count != 0)
+                dg_print_words.Items.Clear();
+
             AddColumns();
             
-            DataTable All_Voc = dtb_t.Get_Id_Voc();
+            DataTable All_Voc = dtb_t.Get_All_IDs_Voc();
 
 
             
@@ -185,6 +190,12 @@ namespace UceniSlovicek
         private void UserControl_Edit_Loaded(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void UserControl_Edit_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (UserControl_Edit.Visibility == Visibility.Hidden)
+                InicializeDataGrid();
         }
     }
 

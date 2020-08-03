@@ -43,7 +43,7 @@ namespace UceniSlovicek
             if (List_AllWords.Count != 0)
                 this.List_AllWords.Clear();
 
-            DataTable All_Voc = dt.Get_Id_Voc();
+            DataTable All_Voc = dt.Get_All_IDs_Voc();
             foreach (DataRow row in All_Voc.Rows)
             {
                 Vocabulary czeVoc = dt.Get_Czech_Voc_By_Id(Convert.ToInt32(row.ItemArray[1]));

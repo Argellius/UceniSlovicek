@@ -33,7 +33,7 @@ namespace UceniSlovicek
         public void InicializeWord(int Id)
         {
             this.id_voc = Id;
-            dt_before = Dtb_Tools.GetCzechandEnglishVocabularyById(id_voc);
+            dt_before = Dtb_Tools.GetCzechandEnglishWordsById(id_voc);
             this.tb_cze_Noun.Text = dt_before[0].Noun;            
             this.tb_cze_Adjective.Text = dt_before[0].Adjective;
             this.tb_cze_Verb.Text = dt_before[0].Verb;
@@ -66,6 +66,9 @@ namespace UceniSlovicek
 
                 Dtb_Tools.UpdateCzechVocById(voc[1], dt_before[1]);
             }
+
+            TextBox_Clean();
+
         }
         private void TextBox_Clean()
         {

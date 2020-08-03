@@ -39,12 +39,13 @@ namespace UceniSlovicek
             List_AllTextBox = new List<TextBox>() { tbox_Noun, tbox_Adjective, tbox_Verb };
         }
 
+        //Load words from database
         public void ReloadWords()
         {
             if (List_AllWords.Count != 0)
                 this.List_AllWords.Clear();
 
-            DataTable All_Voc = dt.Get_Id_Voc();
+            DataTable All_Voc = dt.Get_All_IDs_Voc();
             foreach (DataRow row in All_Voc.Rows)
             {
                 Vocabulary czeVoc = dt.Get_Czech_Voc_By_Id(Convert.ToInt32(row.ItemArray[1]));
@@ -61,6 +62,9 @@ namespace UceniSlovicek
             bt_nextWord_Click(null, null);
 
         }
+
+        //Set button content by kind of word
+        //Show and hide label and textbox by property of actual word (selected by random number)
         private void ButtonContent(KindOfVocabulary kv)
         {                       
             if (kv == KindOfVocabulary.Czech)
@@ -108,17 +112,46 @@ namespace UceniSlovicek
 
         private void bt_nextWord_Click(object sender, RoutedEventArgs e)
         {
+
+            ClearAllTextBox();
+
+            //random number
             var rnd = new Random(DateTime.Now.Millisecond);
             int actual_position = rnd.Next(0, List_AllWords.Count);
+            //get word by random number
             actualWord = List_AllWords[actual_position];
+           
+            //set kind of word
             kindVoc = KindOfVocabulary.Czech;
+            //Set button content by kind of word
             ButtonContent(KindOfVocabulary.Czech);
+
         }
 
+        //Clear all txtBox
+        private void ClearAllTextBox()
+        {
+            ClearTxtBox(tbox_Adjective);
+            ClearTxtBox(tbox_Verb);
+            ClearTxtBox(tbox_Noun);
+        }
+
+
+        //Clear textbox by parameter
+        private void ClearTxtBox(TextBox tb)
+        {
+            if (tb.Text != String.Empty)
+                tb.Clear();
+        }
+
+
+        //Check the correct answer + show results as x/x
         private void bt_check_Click(object sender, RoutedEventArgs e)
         {
-            int correct = 0;
-            int visible = 0;
+            int correct = 0; // correct results
+            int visible = 0; // all results
+
+            //Projdu všechny textboxy - vracím textbox a pozici index
             foreach ((TextBox tb, Int32 i) in List_AllTextBox.Select((value, i) => (value, i)))
                 if (tb.Visibility == Visibility.Visible)
                 {

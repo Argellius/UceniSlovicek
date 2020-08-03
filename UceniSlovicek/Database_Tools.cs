@@ -45,7 +45,7 @@ namespace UceniSlovicek
 
             if (id_cze != -1 && id_eng != -1)
             {
-                Add_References_Vocabulary(id_cze, id_eng);
+                Add_References_Into_Vocabulary(id_cze, id_eng);
             }
 
 
@@ -110,7 +110,8 @@ namespace UceniSlovicek
 
         }
 
-        private void Add_References_Vocabulary(int id_cze, int id_eng)
+        //Insert id_cze and id_eng into entity vocabulary
+        private void Add_References_Into_Vocabulary(int id_cze, int id_eng)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = sqlConnection;
@@ -124,7 +125,8 @@ namespace UceniSlovicek
                 sqlConnection.Close();
         }
 
-        public DataTable Get_Id_Voc()
+        //Return DataTable with content from entity Vocabulary -> Id, Cze_Id and Eng_Id words
+        public DataTable Get_All_IDs_Voc()
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = sqlConnection;
@@ -138,32 +140,6 @@ namespace UceniSlovicek
             return dt;
         }
 
-        public DataTable Get_Czech_Voc()
-        {
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = sqlConnection;
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "SELECT * FROM Czech_Vocabulary";
-            var dt = new DataTable();
-            sqlConnection.Open();
-            dt.Load(cmd.ExecuteReader());
-            if (sqlConnection.State == System.Data.ConnectionState.Open)
-                sqlConnection.Close();
-            return dt;
-        }
-        public DataTable Get_English_Voc()
-        {
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = sqlConnection;
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "SELECT * FROM English_Vocabulary";
-            var dt = new DataTable();
-            sqlConnection.Open();
-            dt.Load(cmd.ExecuteReader());
-            if (sqlConnection.State == System.Data.ConnectionState.Open)
-                sqlConnection.Close();
-            return dt;
-        }
         public Vocabulary Get_English_Voc_By_Id(int Id)
         {
             Vocabulary voc;
@@ -186,16 +162,27 @@ namespace UceniSlovicek
             return voc;
         }
 
-        public Vocabulary[] GetCzechandEnglishVocabularyById(int i)
+
+        /*
+         * ARRAY VOCABULARY
+         * [0] - CZE WORD
+         * [1] - ENG WORD
+         */
+        public Vocabulary[] GetCzechandEnglishWordsById(int id)
         {
             Vocabulary[] voc = new Vocabulary[2];
-            int[] voc_id = GetVocabularyById(i);
+            int[] voc_id = GetVocabularyById(id);
             voc[0] = this.Get_Czech_Voc_By_Id(voc_id[0]);
             voc[1] = this.Get_English_Voc_By_Id(voc_id[1]);
 
             return voc;
         }
 
+        /*
+        * ARRAY INT
+        * [0] - ID_CZE WORD
+        * [1] - ID_ENG WORD
+        */
         public int[] GetVocabularyById(int Id)
         {
             int[] voc = new int[2];
@@ -217,7 +204,7 @@ namespace UceniSlovicek
             return voc;
 
         }
-        
+
 
         public Vocabulary Get_Czech_Voc_By_Id(int Id)
         {
@@ -246,7 +233,7 @@ namespace UceniSlovicek
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = sqlConnection;
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "UPDATE INTO Czech_Vocabulary(Noun, Adjective, Verb)  VALUES(@N, @A, @V)";
+            cmd.CommandText = "UPDATE Czech_Vocabulary SET Noun = @N, Adjective = @A, Verb = @V WHERE Id='" + id + "'";
             if (string.IsNullOrEmpty(voc.Noun))
                 cmd.Parameters.AddWithValue("@N", DBNull.Value);
             else
@@ -272,7 +259,7 @@ namespace UceniSlovicek
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = sqlConnection;
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "UPDATE INTO English_Vocabulary(Noun, Adjective, Verb)  VALUES(@N, @A, @V)";
+            cmd.CommandText = "UPDATE English_VocabularySET Noun = @N, Adjective = @A, Verb = @V WHERE Id='" + id + "'";
             if (string.IsNullOrEmpty(voc.Noun))
                 cmd.Parameters.AddWithValue("@N", DBNull.Value);
             else

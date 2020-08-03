@@ -21,8 +21,8 @@ namespace UceniSlovicek
     public partial class MainWindow : Window
     {
 
-        private List<UserControl> All_UserControl;
-        private List<Button> All_Buttons;
+        private List<UserControl> All_UserControls; //All usercontrols from this window
+        private List<Button> All_Buttons; //All buttons from this window
 
 
 
@@ -39,7 +39,7 @@ namespace UceniSlovicek
         }
         private void InitializeButtonUserControl()
         {
-            All_UserControl = new List<UserControl>() {
+            All_UserControls = new List<UserControl>() {
                 this.UserControl_Add, this.UserControl_Vypis, this.UserControl_FlashCard, UserControl_Write
         };
 
@@ -107,7 +107,7 @@ namespace UceniSlovicek
         {
             Visibility vs_action = action ? Visibility.Visible : Visibility.Hidden;
 
-            foreach (UserControl UC in All_UserControl)
+            foreach (UserControl UC in All_UserControls)
             {
                 if (UC.Visibility != vs_action)
                     UC.Visibility = vs_action;
@@ -120,7 +120,7 @@ namespace UceniSlovicek
             Visibility vs_action = action ? Visibility.Visible : Visibility.Hidden;
             Visibility vs_action_negation = action ? Visibility.Hidden : Visibility.Visible;
 
-            foreach (UserControl UC in All_UserControl)
+            foreach (UserControl UC in All_UserControls)
             {
                 if (UC.Visibility != vs_action && UC == uc)
                     UC.Visibility = vs_action;
